@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext  } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -14,11 +14,41 @@ import Grid from "@mui/material/Grid";
 import img from '../../images/film-poster-placeholder.png'
 import { Link } from "react-router-dom";
 
-export default function MovieCard(props) {
-  const movie = props.movie;
+import Avatar from '@mui/material/Avatar';
+
+import { MoviesContext } from "../../contexts/moviesContext";
+
+
+export default function MovieCard({ movie, action }) {
+  const { favourites, addToFavourites } = useContext(MoviesContext);
+ 
+   if (favourites.find((id) => id === movie.id)) {
+     movie.favourite = true;
+   } else {
+     movie.favourite = false
+   }
+ 
+   const handleAddToFavourite = (e) => {
+     e.preventDefault();
+     addToFavourites(movie);
+   };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardHeader title={movie.title} />
+      <CardHeader
+        avatar={
+          movie.favourite ? (
+            <Avatar sx={{ backgroundColor: 'red' }}>
+              <FavoriteIcon />
+            </Avatar>
+          ) : null
+        }
+        title={
+          <Typography variant="h5" component="p">
+            {movie.title}{" "}
+          </Typography>
+        }
+      />
       <CardMedia
         sx={{ height: 500 }}
         image={
@@ -44,9 +74,7 @@ export default function MovieCard(props) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={null}>
-          <FavoriteIcon color="primary" fontSize="large" />
-        </IconButton>
+        {action(movie)}
         <Link to={`/movies/${movie.id}`}>
           <Button variant="outlined" size="medium" color="primary">
             More Info ...
