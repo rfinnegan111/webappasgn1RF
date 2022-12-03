@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Header from "../headerMovieList/actor";
+import Header from "../headerMovieList";
 import ActorList from "../movieList/actor";
 import Grid from "@mui/material/Grid";
 
