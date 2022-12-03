@@ -15,6 +15,10 @@ import ActorsPage from "./pages/actorsPage";
 import ActorDetailsPage from "./pages/actorDetailsPage";
 import FavouriteActorsPage from "./pages/favouriteActorsPage";
 
+import TvsPage from "./pages/tvsPage";
+import TvDetailsPage from "./pages/tvDetailsPage";
+import FavouriteTvsPage from "./pages/favouriteTvsPage";
+
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools'
 
@@ -48,6 +52,10 @@ const App = () => {
             <Route path="/actors/:id" element={<ActorDetailsPage />} />
             <Route path="/actors/favourites" element={<FavouriteActorsPage />} />
             
+            <Route exact path="/movies/tvs" element={<TvsPage />} />
+            <Route path="/tvs/:id" element={<TvDetailsPage />} />
+            <Route path="/tvs/favourites" element={<FavouriteTvsPage />} />
+
             <Route path="/movies/:id" element={<MoviePage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="*" element={ <Navigate to="/" /> } />
