@@ -22,6 +22,7 @@ const chip = { margin: 0.5 };
 
 const ActorDetails = ({ actor }) => {  
   const [drawerOpen, setDrawerOpen] = useState(false);
+  
 
   return (
     <>

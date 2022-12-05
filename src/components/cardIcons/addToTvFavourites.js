@@ -8,7 +8,7 @@ const AddToTvFavouritesIcon = ({ tv }) => {
 
   const handleAddToTvFavourites = (e) => {
     e.preventDefault();
-    context.addToActorFavourites(tv);
+    context.addToTvFavourites(tv);
   };
 
   return (

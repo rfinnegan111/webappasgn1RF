@@ -10,7 +10,6 @@ import RemoveFromActorFavourites from "../components/cardIcons/removeFromActorFa
 const FavouriteActorsPage = () => {
   const {actorFavourites: actorIds } = useContext(MoviesContext);
 
-  // Create an array of queries and run in parallel.
   const favouriteActorQueries = useQueries(
     actorIds.map((actorId) => {
       return {
@@ -19,7 +18,7 @@ const FavouriteActorsPage = () => {
       };
     })
   );
-  // Check if any of the parallel queries is still loading.
+
   const isLoading = favouriteActorQueries.find((m) => m.isLoading === true);
 
   if (isLoading) {
@@ -27,7 +26,6 @@ const FavouriteActorsPage = () => {
   }
 
   const actors = favouriteActorQueries.map((q) => {
-    q.actorFavourite = q.actorFavourite.map(g => g.id)
     return q.data
   });
 

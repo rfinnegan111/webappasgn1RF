@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
 import  TvDetails from "../components/movieDetails/tv";
-import TemplateTvPage from "../components/templateMoviePage/tv";
+import TvPageTemplate from "../components/templateMoviePage/tv";
 import useTv from "../hooks/useTv";
 import { getTv } from '../api/tmdb-api'
 import { useQuery } from "react-query";
@@ -27,9 +27,9 @@ const TvDetailsPage = (props) => {
     <>
       {tv ? (
         <>
-          <TemplateTvPage tv={tv}>
+          <TvPageTemplate tv={tv}>
             <TvDetails tv={tv} />
-          </TemplateTvPage>
+          </TvPageTemplate>
         </>
       ) : (
         <p>Waiting for tv series details</p>

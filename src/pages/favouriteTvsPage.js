@@ -10,16 +10,15 @@ import RemoveFromTvFavourites from "../components/cardIcons/removeFromTvFavourit
 const FavouriteTvsPage = () => {
   const {tvFavourites: tvIds } = useContext(MoviesContext);
 
-  // Create an array of queries and run in parallel.
   const favouriteTvQueries = useQueries(
     tvIds.map((tvId) => {
       return {
-        queryKey: ["tv series", { id: tvId }],
+        queryKey: ["tv", { id: tvId }],
         queryFn: getTv,
       };
     })
   );
-  // Check if any of the parallel queries is still loading.
+
   const isLoading = favouriteTvQueries.find((m) => m.isLoading === true);
 
   if (isLoading) {
@@ -27,7 +26,7 @@ const FavouriteTvsPage = () => {
   }
 
   const tvs = favouriteTvQueries.map((q) => {
-    q.tvFavourite = q.tvFavourite.map(g => g.id)
+    q.data.genre_ids = q.data.genres.map(g => g.id)
     return q.data
   });
 

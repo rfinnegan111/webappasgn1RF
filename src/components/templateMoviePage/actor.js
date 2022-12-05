@@ -7,6 +7,7 @@ import { getActorImages } from "../../api/tmdb-api";
 
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
+import img from '../../images/film-poster-placeholder.png'
 
 const TemplateActorPage = ({ actor, children }) => {
   const { data , error, isLoading, isError } = useQuery(

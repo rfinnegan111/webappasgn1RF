@@ -47,7 +47,7 @@ const TvDetails = ({ tv }) => {
         ))}
       </Paper>
       <Paper component="ul" sx={root}>
-        <Chip icon={<VideoLibraryIcon />} label={`Seasons Available: ${tv.number_of_seasons}`} />
+        <Chip icon={<VideoLibraryIcon />} label={`Seasons Available: ${tv.number_of_seasons.toLocaleString()}`} />
         <Chip
           icon={<LiveTvIcon />}
           label={`Number of Episodes: ${tv.number_of_episodes.toLocaleString()}`}
@@ -82,7 +82,6 @@ const TvDetails = ({ tv }) => {
         }}
       >
         <NavigationIcon />
-        Reviews
       </Fab>
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
       </Drawer>

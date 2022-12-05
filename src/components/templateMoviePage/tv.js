@@ -7,6 +7,7 @@ import { getTvImages } from "../../api/tmdb-api";
 
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
+import img from '../../images/film-poster-placeholder.png'
 
 const TemplateTvPage = ({ tv, children }) => {
   const { data , error, isLoading, isError } = useQuery(
@@ -21,7 +22,7 @@ const TemplateTvPage = ({ tv, children }) => {
   if (isError) {
     return <h1>{error.message}</h1>;
   }
-  const images = data.profiles
+  const images = data.posters
 
   return (
     <>

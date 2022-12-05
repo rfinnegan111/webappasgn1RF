@@ -15,7 +15,6 @@ export const getMovies = () => {
   };
     
   export const getMovie = (args) => {
-    // console.log(args)
     const [, idPart] = args.queryKey;
     const { id } = idPart;
     return fetch(
@@ -70,20 +69,24 @@ export const getMovies = () => {
       )
         .then((res) => res.json())
         .then((json) => {
-          // console.log(json.results);
           return json.results;
         });
     };
   
-  
-  
     export const getUpcoming = () => {
       return fetch(
         `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&page=1`
-      )
-        .then(res => res.json())
-        .then(json => json.results);
+      ).then((response) => {
+        if (!response.ok) {
+          throw new Error(response.json().message);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+         throw error
+      });
     };
+      
 
     //ACTORS
 
@@ -102,7 +105,6 @@ export const getMovies = () => {
     };
 
     export const getActor = (args) => {
-      // console.log(args)
       const [, idPart] = args.queryKey;
       const { id } = idPart;
       return fetch(
@@ -152,7 +154,6 @@ export const getMovies = () => {
     };
 
     export const getTv = (args) => {
-      // console.log(args)
       const [, idPart] = args.queryKey;
       const { id } = idPart;
       return fetch(

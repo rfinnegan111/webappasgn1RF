@@ -8,7 +8,7 @@ import AddToTvFavouritesIcon from '../components/cardIcons/addToTvFavourites'
 
 const TvsPage = (props) => {
 
-  const {  data, error, isLoading, isError }  = useQuery('tv series', getTvs)
+  const {  data, error, isLoading, isError }  = useQuery('tvs', getTvs)
 
   if (isLoading) {
     return <Spinner />
